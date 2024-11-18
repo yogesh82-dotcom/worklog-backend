@@ -33,6 +33,7 @@ const logSchema = new mongoose.Schema({
 const logModel = mongoose.model('worklog',logSchema);
 
 app.post('/worklogs', async (req,res) => {
+    res.status(200).send("landing");
     const {title, description,working_hours} = req.body;
     // const newlog = {
     //     id: logs.length + 1,
