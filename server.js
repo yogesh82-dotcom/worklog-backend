@@ -13,7 +13,7 @@ let logs = [];
 // app.get('/',(req,res)=>{
 //     res.send("Hello Worldd")
 // })
-mongoose.connect('mongodb://localhost:27017/mern-site')
+mongoose.connect('mongodb+srv://yogesh:20EuGf8oDWC6KaOi@cluster1.1wm6t.mongodb.net/')
 .then(()=>{
     console.log("Database Connected!")
 })
@@ -98,7 +98,7 @@ app.delete('/worklogs/:id', async(req,res)=>{
     }
 })
 
-const port = 8000;
+const port = process.env.port || 8000;
 app.listen(port,()=>{
     console.log("server initiated at " + port);
 })
