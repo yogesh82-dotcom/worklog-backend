@@ -1,16 +1,28 @@
 const express = require("express");
 const session = require("express-session");
 const mongoose = require("mongoose");
+const path = require("path");
 const cors = require("cors");
 require("dotenv").config();
 const bcrypt = require("bcryptjs");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://worklog-1urf.onrender.com",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 let logs = [];
 const mongoURI = process.env.MONGO_URI;
+
+app.use(express.static(path.join(__dirname, "build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 mongoose
   .connect(mongoURI)
